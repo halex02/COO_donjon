@@ -1,0 +1,7 @@
+package dungeon ;
+
+import character.* ;
+
+public class DeathRoom extends Room {
+
+}

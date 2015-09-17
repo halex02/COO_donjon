@@ -1,10 +1,9 @@
 package stuff.weapon;
 
-import stuff.Stuff;
 import mob.Mob;
+import stuff.Stuff;
 
+public abstract class Weapon extends Stuff {
 
-public abstract class Weapon extends Stuff{
-
-	abstract void Use(Mob target);
+	abstract public void use(Mob target);
 }

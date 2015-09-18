@@ -6,7 +6,7 @@ import stuff.Stuff;
 import stuff.armor.Armor;
 import stuff.weapon.Weapon;
 
-public class Mob {
+public class Mob implements Comparable<Mob>{
 
 	private String name;
 	protected Integer pv;
@@ -178,5 +178,10 @@ public class Mob {
 
 	public void setPo(Integer po) {
 		this.po = po;
+	}
+
+	@Override
+	public int compareTo(Mob o) {
+		return name.compareTo(o.name);
 	}
 }

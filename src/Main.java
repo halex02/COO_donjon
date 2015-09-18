@@ -96,6 +96,7 @@ public class Main {
 					break;
 				case 5://Attaquer
 					if(room.getMobs().size()>1){
+						Collections.sort(room.getMobs());
 						int i2 = 1;
 						for(Mob mob2 : room.getMobs()){
 							System.out.println((i2) + " - " + mob2.getName());

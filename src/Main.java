@@ -21,7 +21,7 @@ public class Main {
 	
 	private static void attaque(Mob source, Mob taget){
 		System.out.println(String.format(Local.ACTION_ATTAQUE, source.getName(), source.getWeapon().getName()));
-		source.getWeapon().use(taget);
+		source.getWeapon().use(source, taget);
 		if(taget.getPv()>0){
 			System.out.println(String.format(Local.LAST_PV, taget.getPv()));
 		}else{
@@ -126,7 +126,7 @@ public class Main {
 	public static void main(String[] args) {
 		RoomGenerator generator = new RoomGenerator();
 		room = generator.generate();
-		player = new Mob("Dudule", 100, null, null, null, null, null, 0, 1, null, new ArrayList<Stuff>(), new WoodenSword(), null, 0);
+		player = new Mob("Dudule", 100, 2, null, null, null, null, 0, 1, null, new ArrayList<Stuff>(), new WoodenSword(), null, 0);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}

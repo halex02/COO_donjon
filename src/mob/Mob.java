@@ -30,6 +30,11 @@ public class Mob implements Comparable<Mob>{
 		this.name = nom;
 		this.pv = maxPv;
 		this.maxPv = maxPv;
+		this.strenth = 0;
+		this.toughness = 0;
+		this.acuracy = 0;
+		this.intelligence = 0;
+		this.charisma = 0;
 		this.xp = xp;
 		this.lvl = lvl;
 		this.stuff = stuff;

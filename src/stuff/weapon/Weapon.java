@@ -5,5 +5,5 @@ import stuff.Stuff;
 
 public abstract class Weapon extends Stuff {
 
-	abstract public void use(Mob target);
+	abstract public void use(Mob Source, Mob target);
 }

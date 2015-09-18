@@ -8,7 +8,7 @@ import stuff.weapon.Weapon;
 
 public class Mob {
 
-	private String nom;
+	private String name;
 	protected Integer pv;
 	protected Integer maxPv;
 	protected Integer strenth;
@@ -27,8 +27,8 @@ public class Mob {
 	public Mob(String nom, Integer maxPv, Integer xp, Integer lvl,
 			List<Stuff> stuff, Weapon weapon, Armor armor, Integer po) {
 		super();
-		this.nom = nom;
-		this.pv = pv;
+		this.name = nom;
+		this.pv = maxPv;
 		this.maxPv = maxPv;
 		this.xp = xp;
 		this.lvl = lvl;
@@ -43,7 +43,7 @@ public class Mob {
 			Integer xp, Integer lvl, Integer live, List<Stuff> stuff,
 			Weapon weapon, Armor armor, Integer po) {
 		super();
-		this.nom = nom;
+		this.name = nom;
 		this.pv = maxPv;
 		this.maxPv = maxPv;
 		this.strenth = strenth;
@@ -60,8 +60,8 @@ public class Mob {
 		this.po = po;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
 	public Integer getPv() {
@@ -120,8 +120,8 @@ public class Mob {
 		return po;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String nom) {
+		this.name = nom;
 	}
 
 	public void setPv(Integer pv) {

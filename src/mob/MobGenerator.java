@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import localisation.Local;
 import stuff.Stuff;
 import stuff.weapon.impl.WoodenSword;
-import Localisation.Local;
 
 public class MobGenerator {
 

@@ -1,4 +1,4 @@
-package Localisation;
+package localisation;
 
 public final class Local {
 	// public final static String = "";
@@ -35,4 +35,17 @@ public final class Local {
 	public final static String MOB_GOBELIN = "Gobelin";
 	public final static String MOB_ORC = "Orc";
 	public final static String MOB_TROLL = "Troll";
+
+	 public final static String ACTION_TEXT = "Que voullez-vous faire ?";
+	 public final static String ACTION_LIST = "1 - Changer de salle\n"
+		 		+ "2 - Foullier\n"
+		 		+ "3 - Iventaire\n"
+		 		+ "4 - Danser";
+	 public final static String ACTION_ATTAQUER = "5 - Attaquer\n";
+	 public final static String ACTION_ATTAQUE = "%s attaque avec sa %s";
+
+	 public final static String LAST_PV= "Il lui reste %d pv";
+	 public final static String DEATH= "%s est Mort";
+	 
+	 public final static String LOOT = "Vous obtenez :";
 }

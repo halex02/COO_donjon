@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import localisation.Local;
 import mob.Mob;
 import mob.MobGenerator;
-import Localisation.Local;
 
 public class RoomGenerator {
 

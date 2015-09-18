@@ -54,4 +54,5 @@ public final class Local {
 
 	 public final static String IDIOT_ATTAQUE = "%s donne un coup à un enemis que lui seul semble voir";
 	 public final static String IDIOT_ISSUE = "%s se cogne contre le mur";
+	 public final static String IDIOT_DANSE = "%s fait une danse rigolote...";
 }

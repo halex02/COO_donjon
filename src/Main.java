@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Scanner;
 
 import localisation.Local;
@@ -65,7 +66,7 @@ public class Main {
 						i = i + 1;
 					}
 					int choix = Integer.parseInt(scanner.nextLine());
-					if(choix > 0 && choix <= room.getMobs().size()){
+					if(choix > 0 && choix <= room.getIssues().size()){
 						if(room.getMobs().size() > 1){
 							System.out.println(String.format(Local.ACTION_RUN, player.getName()));
 							for(Mob mob2 : room.getMobs()){
@@ -92,7 +93,7 @@ public class Main {
 					
 					break;
 				case 4://Danser
-					
+					System.out.println(String.format(Local.IDIOT_DANSE, player.getName()));
 					break;
 				case 5://Attaquer
 					if(room.getMobs().size()>1){

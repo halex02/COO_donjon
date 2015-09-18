@@ -62,7 +62,10 @@ public class RoomGenerator {
 			if (newRoom.getIssues() == null) {
 				newRoom.setIssues(new HashMap<String, Room>());
 			}
-			newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
+			if(!newRoom.getName().equals(Local.STARTING_ROOM_NAME)){
+				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
+			}
+			
 			if (newRoom.getMobs() == null) {
 				newRoom.setMobs(new ArrayList<Mob>());
 			}
@@ -87,6 +90,7 @@ public class RoomGenerator {
 				Room newRoom = new Room(rooms.get(0));
 
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));
+				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);
 				if (newRoom.getMobs() == null) {
 					newRoom.setMobs(new ArrayList<Mob>());
 				}
@@ -94,10 +98,9 @@ public class RoomGenerator {
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);
 			}
-			issues.put(Local.ISSUE_PREVIOUS, previousRoom);
 			return issues;
 		} else {
-			return null;
+			return new HashMap<String, Room>();
 		}
 	}
 }

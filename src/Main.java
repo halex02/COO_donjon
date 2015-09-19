@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 import java.util.Scanner;
 
+import dungeons.Room;
+import dungeons.RoomGenerator;
 import localisation.Local;
 import mob.Mob;
 import stuff.Stuff;
 import stuff.weapon.impl.WoodenSword;
-import dungeons.Room;
-import dungeons.RoomGenerator;
 
 
 public class Main {

@@ -6,6 +6,12 @@ import stuff.weapon.Weapon;
 
 public class Fist extends Weapon {
 
+	public Fist() {
+		name = Local.WEAPON_FIST_NAME;
+		setWeight(0);
+		setValue(0);
+	}
+
 	@Override
 	public void use(Mob source, Mob target) {
 		Integer degat1 = source.getStrenth();

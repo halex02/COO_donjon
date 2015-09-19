@@ -32,7 +32,7 @@ public final class Local {
 	public static final String WEAPON_WOODEN_SWORD_NAME = "Epee en bois";
 	public static final String WEAPON_WOODEN_SWORD_DESCRIPTION = "En regardant cette epee vous y voyez votre tendre enfance, mais vous n'y voyez certainement pas une arme";
 	public static final String WEAPON_WOODEN_SWORD_EFFECT = "L'epee s\'abbat sur %s dans un \"pof\" minable et inflige %d";
-	public static final String WEAPON_FIST_NAME = "Votre poing";
+	public static final String WEAPON_FIST_NAME = "Ses poings";
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 
 	public final static String MOB_GOBELIN = "Gobelin";
@@ -58,6 +58,7 @@ public final class Local {
 	 public final static String DEATH= "%s est Mort";
 	 public final static String LOOT = "Vous obtenez :";
 	 public final static String MOBS_WAITTING = "On vous y attendait !";
+	 public final static String EQUIPED= "(equipé)";
 
 	 public final static String IDIOT_ATTAQUE = "%s donne un coup à un enemis que lui seul semble voir";
 	 public final static String IDIOT_ISSUE = "%s se cogne contre le mur";

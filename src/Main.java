@@ -84,7 +84,7 @@ public class Main {
 	private static void inventaire(){
 		int i = 1;
 		for(Stuff stuff : player.getStuff()){
-			System.out.println(i + " - " + stuff.getName());
+			System.out.println(i + " - " + stuff.getName() + ((player.getWeapon().equals(stuff) || player.getArmor().equals(stuff))?Local.EQUIPED:""));
 			i = i + 1;
 		}
 		int choix = Integer.parseInt(scanner.nextLine());
@@ -101,7 +101,7 @@ public class Main {
 				System.out.println(Local.ACTION_USE);
 			}
 			choix = Integer.parseInt(scanner.nextLine());
-			if(choix > 0 && choix <= player.getStuff().size()){
+			if(choix > 0 && choix <= 2){
 				switch (choix) {
 				case 1:
 					if(player.getArmor() == stuff){
@@ -201,7 +201,7 @@ public class Main {
 		room = generator.generate();
 		Weapon weapon = new WoodenSword();
 		List<Stuff> stuffs = new ArrayList<Stuff>(Collections.singleton(weapon));
-		player = new Mob("Dudule", 100, 2, null, null, null, null, 0, 1, null, stuffs, weapon, null, 0);
+		player = new Mob("Dudule", 100, 6, null, null, null, null, 0, 1, null, stuffs, weapon, null, 0);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}

@@ -30,7 +30,10 @@ public final class Local {
 	public final static String ISSUE_PREVIOUS = "En arriere";
 
 	public static final String WEAPON_WOODEN_SWORD_NAME = "Epee en bois";
+	public static final String WEAPON_WOODEN_SWORD_DESCRIPTION = "En regardant cette epee vous y voyez votre tendre enfance, mais vous n'y voyez certainement pas une arme";
 	public static final String WEAPON_WOODEN_SWORD_EFFECT = "L'epee s\'abbat sur %s dans un \"pof\" minable et inflige %d";
+	public static final String WEAPON_FIST_NAME = "Votre poing";
+	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 
 	public final static String MOB_GOBELIN = "Gobelin";
 	public final static String MOB_ORC = "Orc";
@@ -46,6 +49,10 @@ public final class Local {
 	 public final static String ACTION_RUN = "%s tente de s'enfuir";
 	 public final static String ACTION_MOVE = "%s rentre dans %s";
 	 public final static String ACTION_CHANGER_SALLE = "Il y as plusieur issue :";
+	 public final static String ACTION_PASS = "0 - retour";
+	 public final static String ACTION_TROW = "1 - Jeter";
+	 public final static String ACTION_USE = "2 - Utiliser";
+	 public final static String ACTION_EQUIP = "2 - Equiper";
 
 	 public final static String LAST_PV= "Il lui reste %d pv";
 	 public final static String DEATH= "%s est Mort";

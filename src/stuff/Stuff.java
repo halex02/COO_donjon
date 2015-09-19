@@ -2,8 +2,9 @@ package stuff;
 
 public class Stuff {
 	protected String name;
-	protected Integer weight;
-	protected Integer value;
+	private String description;
+	private Integer weight;
+	private Integer value;
 
 	public String getName() {
 		return name;
@@ -27,6 +28,14 @@ public class Stuff {
 
 	public void setValue(Integer value) {
 		this.value = value;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

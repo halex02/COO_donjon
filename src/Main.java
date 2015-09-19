@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import dungeons.Room;
@@ -7,6 +8,10 @@ import dungeons.RoomGenerator;
 import localisation.Local;
 import mob.Mob;
 import stuff.Stuff;
+import stuff.armor.Armor;
+import stuff.consomable.Consommable;
+import stuff.weapon.Weapon;
+import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.WoodenSword;
 
 
@@ -47,6 +52,99 @@ public class Main {
 		}
 	}
 	
+	private static void move(){
+		System.out.println(Local.ACTION_CHANGER_SALLE);
+		int i = 1;
+		for(String porte : room.getIssues().keySet()){
+			System.out.println((i) + " - " + porte);
+			i = i + 1;
+		}
+		int choix = Integer.parseInt(scanner.nextLine());
+		if(choix > 0 && choix <= room.getIssues().size()){
+			if(room.getMobs().size() > 1){
+				System.out.println(String.format(Local.ACTION_RUN, player.getName()));
+				for(Mob mob2 : room.getMobs()){
+					if(!mob2.equals(player)){
+						attaque(mob2, player);
+					}
+				}
+			}
+			room.getMobs().remove(player);
+			room = room.getIssues().get(room.getIssues().keySet().toArray()[choix - 1]);
+			room.getMobs().add(player);
+			System.out.println(String.format(Local.ACTION_MOVE, player.getName(), room.getDescription()));
+			if(room.getMobs().size() > 1){
+				System.out.println(Local.MOBS_WAITTING);
+			}
+		}else{
+			System.out.println(String.format(Local.IDIOT_ISSUE, player.getName()));
+		}
+	}
+	
+	private static void inventaire(){
+		int i = 1;
+		for(Stuff stuff : player.getStuff()){
+			System.out.println(i + " - " + stuff.getName());
+			i = i + 1;
+		}
+		int choix = Integer.parseInt(scanner.nextLine());
+		if(choix > 0 && choix <= player.getStuff().size()){
+			Stuff stuff = player.getStuff().get(choix - 1);
+			System.out.println(stuff.getDescription());
+			System.out.println();
+			System.out.println(Local.ACTION_TEXT);
+			System.out.println(Local.ACTION_PASS);
+			System.out.println(Local.ACTION_TROW);
+			if(stuff instanceof Armor || stuff instanceof Weapon){
+				System.out.println(Local.ACTION_EQUIP);
+			}else if(stuff instanceof Consommable){
+				System.out.println(Local.ACTION_USE);
+			}
+			choix = Integer.parseInt(scanner.nextLine());
+			if(choix > 0 && choix <= player.getStuff().size()){
+				switch (choix) {
+				case 1:
+					if(player.getArmor() == stuff){
+						player.setArmor(new Armor());
+					}
+					if(player.getWeapon() == stuff){
+						player.setWeapon(new Fist());
+					}
+					player.getStuff().remove(stuff);
+					break;
+				case 2:
+					if(stuff instanceof Armor){
+						player.setArmor((Armor) stuff);
+					}else if(stuff instanceof Weapon){
+						player.setWeapon((Weapon) stuff);
+					}else if(stuff instanceof Consommable){
+						Mob target = null;
+						if(room.getMobs().size()>1){
+							Collections.sort(room.getMobs());
+							int i2 = 1;
+							System.out.println(Local.ACTION_PASS);
+							for(Mob mob2 : room.getMobs()){
+								System.out.println((i2) + " - " + mob2.getName());
+								i2 = i2 + 1;
+							}
+							int c = Integer.parseInt(scanner.nextLine());
+							if(c > 0 && c <= room.getMobs().size()){
+								target = room.getMobs().get(c - 1);
+							}
+						}else{
+							target = player;
+						}
+						((Consommable)stuff).use(target);
+					}
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+	}
+	
 	private static void action(){
 		Collections.shuffle(room.getMobs());
 		for(int mobIndex = 0; mobIndex < room.getMobs().size(); mobIndex++){
@@ -58,38 +156,13 @@ public class Main {
 				}
 				switch (Integer.parseInt(scanner.nextLine())){
 				case 1://Changer de salle
-					System.out.println(Local.ACTION_CHANGER_SALLE);
-					int i = 1;
-					for(String porte : room.getIssues().keySet()){
-						System.out.println((i) + " - " + porte);
-						i = i + 1;
-					}
-					int choix = Integer.parseInt(scanner.nextLine());
-					if(choix > 0 && choix <= room.getIssues().size()){
-						if(room.getMobs().size() > 1){
-							System.out.println(String.format(Local.ACTION_RUN, player.getName()));
-							for(Mob mob2 : room.getMobs()){
-								if(!mob2.equals(player)){
-									attaque(mob2, player);
-								}
-							}
-						}
-						room.getMobs().remove(player);
-						room = room.getIssues().get(room.getIssues().keySet().toArray()[choix - 1]);
-						room.getMobs().add(player);
-						System.out.println(String.format(Local.ACTION_MOVE, player.getName(), room.getDescription()));
-						if(room.getMobs().size() > 1){
-							System.out.println(Local.MOBS_WAITTING);
-						}
-					}else{
-						System.out.println(String.format(Local.IDIOT_ISSUE, player.getName()));
-					}
+					move();
 					break;
 				case 2://Foullier
 					
 					break;
 				case 3://Iventaire
-					
+					inventaire();
 					break;
 				case 4://Danser
 					System.out.println(String.format(Local.IDIOT_DANSE, player.getName()));
@@ -126,7 +199,9 @@ public class Main {
 	public static void main(String[] args) {
 		RoomGenerator generator = new RoomGenerator();
 		room = generator.generate();
-		player = new Mob("Dudule", 100, 2, null, null, null, null, 0, 1, null, new ArrayList<Stuff>(), new WoodenSword(), null, 0);
+		Weapon weapon = new WoodenSword();
+		List<Stuff> stuffs = new ArrayList<Stuff>(Collections.singleton(weapon));
+		player = new Mob("Dudule", 100, 2, null, null, null, null, 0, 1, null, stuffs, weapon, null, 0);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}

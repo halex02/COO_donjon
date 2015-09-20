@@ -6,10 +6,10 @@ public final class Local {
 	public final static String STARTING_ROOM_DESCRIPTION = "Bienvenus à l'entrée du Donjon";
 
 	public final static String ENDING_ROOM_NAME = "End";
-	public final static String ENDING_ROOM_DESCRIPTION = "Vous sentez une douce brise vous gider vers la sortie";
+	public final static String ENDING_ROOM_DESCRIPTION = "l'anti-chambre de la sortie";
 
 	public final static String ROOM_BOSS_NAME = "La salle du Boss";
-	public final static String ROOM_BOSS_DESCRIPTION = "Il vous attendait, preparez-vous à combatre";
+	public final static String ROOM_BOSS_DESCRIPTION = "l'antre du Boss !";
 
 	public final static String ROOM_COULOIR_NAME = "Couloir";
 	public final static String ROOM_COULOIR_DESCRIPTION_1 = "un long couloir";
@@ -26,7 +26,7 @@ public final class Local {
 	public final static String ROOM_STANDAR_DESCRIPTION_5 = "une cellule lugubre";
 
 	public final static String[] ISSUE_STANDAR = { "Une porte en bois",
-			"Un tenture", "Une grille", "Une porte" };
+			"Une tenture", "Une grille", "Une porte" };
 	public final static String ISSUE_PREVIOUS = "En arriere";
 
 	public static final String WEAPON_WOODEN_SWORD_NAME = "Epee en bois";

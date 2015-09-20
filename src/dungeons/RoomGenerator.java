@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Random;
 
 import localisation.Local;
-import mob.Mob;
 import mob.MobGenerator;
 
 public class RoomGenerator {
@@ -42,15 +41,18 @@ public class RoomGenerator {
 
 	public Room generate() {
 		Room room = new Room();
+		Room bossRoom = new Room(Local.ROOM_BOSS_DESCRIPTION, Local.ROOM_BOSS_NAME);
 		Random rand = new Random();
 		MobGenerator generator = new MobGenerator();
 
 		Room curentRoom = room;
-		for (int i = 0; i < (rand.nextInt(3) + 3); i++) {
+		int nbRoom = (rand.nextInt(3) + 3);
+		for (int i = 0; i < nbRoom; i++) {
 			Collections.shuffle(rooms);
 			Room newRoom = new Room(rooms.get(0));
-			if (curentRoom.getIssues() == null) {
-				curentRoom.setIssues(new HashMap<String, Room>());
+			if(i == (nbRoom - 1)){
+				newRoom.getIssues().put(Local.ISSUE_STANDAR[rand
+				                							.nextInt(Local.ISSUE_STANDAR.length)], bossRoom);
 			}
 			curentRoom
 					.getIssues()
@@ -59,23 +61,17 @@ public class RoomGenerator {
 							newRoom);
 			curentRoom.getIssues().putAll(
 					subGenerate(rand.nextInt(5) + 1, curentRoom));
-			if (newRoom.getIssues() == null) {
-				newRoom.setIssues(new HashMap<String, Room>());
-			}
-			if(!newRoom.getName().equals(Local.STARTING_ROOM_NAME)){
-				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
-			}
+			newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
 			
-			if (newRoom.getMobs() == null) {
-				newRoom.setMobs(new ArrayList<Mob>());
-			}
 			newRoom.getMobs().addAll(generator.generate());
 			curentRoom = newRoom;
 		}
 
-		rooms.add(new Room(Local.ROOM_BOSS_DESCRIPTION, Local.ROOM_BOSS_NAME));
-		rooms.add(new Room(Local.ENDING_ROOM_DESCRIPTION,
-				Local.ENDING_ROOM_NAME));
+		Room endRoom = new Room(Local.ENDING_ROOM_DESCRIPTION,
+				Local.ENDING_ROOM_NAME);
+		bossRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
+		bossRoom.getIssues().put(Local.ISSUE_STANDAR[0], endRoom);
+		endRoom.getIssues().put(Local.ISSUE_PREVIOUS, bossRoom);
 		return room;
 	}
 
@@ -91,9 +87,6 @@ public class RoomGenerator {
 
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));
 				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);
-				if (newRoom.getMobs() == null) {
-					newRoom.setMobs(new ArrayList<Mob>());
-				}
 				newRoom.getMobs().addAll(generator.generate());
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);

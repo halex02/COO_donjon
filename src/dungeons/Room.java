@@ -19,6 +19,8 @@ public class Room {
 		super();
 		this.description = Local.STARTING_ROOM_DESCRIPTION;
 		this.name = Local.STARTING_ROOM_NAME;
+		issues = new HashMap<>();
+		mobs = new ArrayList<>();
 	}
 
 	public Room(Room room) {
@@ -29,12 +31,16 @@ public class Room {
 			this.issues = new HashMap<String, Room>(room.issues);
 		if (room.mobs != null)
 			this.mobs = new ArrayList<Mob>(room.mobs);
+		issues = new HashMap<>();
+		mobs = new ArrayList<>();
 	}
 
 	public Room(String description, String name) {
 		super();
 		this.description = description;
 		this.name = name;
+		issues = new HashMap<>();
+		mobs = new ArrayList<>();
 	}
 
 	public Room(String description, String name, Map<String, Room> issues,
@@ -44,6 +50,8 @@ public class Room {
 		this.name = name;
 		this.issues = issues;
 		this.mobs = mobs;
+		issues = new HashMap<>();
+		mobs = new ArrayList<>();
 	}
 
 	public String getDescription() {

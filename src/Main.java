@@ -13,6 +13,7 @@ import stuff.consomable.Consommable;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import stuff.weapon.Weapon;
 import stuff.weapon.impl.Fist;
+import stuff.weapon.impl.IronSword;
 import stuff.weapon.impl.WoodenSword;
 
 
@@ -219,7 +220,7 @@ public class Main {
 	public static void main(String[] args) {
 		RoomGenerator generator = new RoomGenerator();
 		room = generator.generate();
-		Weapon weapon = new WoodenSword();
+		Weapon weapon = new IronSword();
 		List<Stuff> stuffs = new ArrayList<Stuff>();
 		stuffs.add(weapon);
 		stuffs.add(new ScrollOfFireBall());

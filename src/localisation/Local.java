@@ -32,6 +32,9 @@ public final class Local {
 	public static final String WEAPON_WOODEN_SWORD_NAME = "Epee en bois";
 	public static final String WEAPON_WOODEN_SWORD_DESCRIPTION = "En regardant cette epee vous y voyez votre tendre enfance, mais vous n'y voyez certainement pas une arme";
 	public static final String WEAPON_WOODEN_SWORD_EFFECT = "L'epee s\'abbat sur %s dans un \"pof\" minable et inflige %d";
+	public static final String WEAPON_IRON_SWORD_NAME = "Epee en fer";
+	public static final String WEAPON_IRON_SWORD_DESCRIPTION = "Arme à pas cher";
+	public static final String WEAPON_IRON_SWORD_EFFECT = "L'epee s\'abbat sur %s et inflige %d";
 	public static final String WEAPON_FIST_NAME = "Ses poings";
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 	

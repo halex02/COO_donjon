@@ -10,6 +10,7 @@ import mob.Mob;
 import stuff.Stuff;
 import stuff.armor.Armor;
 import stuff.consomable.Consommable;
+import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import stuff.weapon.Weapon;
 import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.WoodenSword;
@@ -24,30 +25,49 @@ public class Main {
 		return (xp/10) + 1;
 	}
 	
-	private static void attaque(Mob source, Mob taget){
+	private static void loot(Mob source, Mob target){
+		source.getStuff().addAll(target.getStuff());
+		source.setPo(source.getPo() + target.getPo());
+		source.setXp(source.getXp() + lootXp(target.getXp()));
+		System.out.println();
+		System.out.println(Local.LOOT);
+		for(Stuff stuff : target.getStuff()){
+			System.out.println(" - " + stuff.getName());
+		}
+		if(target.getPo() > 0){
+			System.out.println(" - " + target.getPo() + " PO");
+		}
+		System.out.println(" - " + lootXp(target.getXp()) + 1 + " XP");
+	}
+	
+	private static void attaque(Mob source, Mob target){
 		System.out.println(String.format(Local.ACTION_ATTAQUE, source.getName(), source.getWeapon().getName()));
-		source.getWeapon().use(source, taget);
-		if(taget.getPv()>0){
-			System.out.println(String.format(Local.LAST_PV, taget.getPv()));
+		source.getWeapon().use(source, target);
+		if(target.getPv()>0){
+			System.out.println(String.format(Local.LAST_PV, target.getPv()));
 		}else{
-			System.out.println(String.format(Local.DEATH, taget.getName()));
-			if(taget.equals(player)){
+			System.out.println(String.format(Local.DEATH, target.getName()));
+			if(target.equals(player)){
 				//TODO
 			}else{
-				room.getMobs().remove(taget);
-				source.getStuff().addAll(taget.getStuff());
-				source.setPo(source.getPo() + taget.getPo());
-				source.setXp(source.getXp() + lootXp(taget.getXp()));
-				System.out.println(String.format(Local.DEATH, taget.getName()));
-				System.out.println();
-				System.out.println(Local.LOOT);
-				for(Stuff stuff : taget.getStuff()){
-					System.out.println(" - " + stuff.getName());
-				}
-				if(taget.getPo() > 0){
-					System.out.println(" - " + taget.getPo() + " PO");
-				}
-				System.out.println(" - " + lootXp(taget.getXp()) + 1 + " XP");
+				room.getMobs().remove(target);
+				loot(source, target);
+			}
+		}
+	}
+	
+	private static void consommable(Mob source, Mob target, Consommable consommable){
+		consommable.use(source, target);
+		source.getStuff().remove(consommable);
+		if(target.getPv()>0){
+			System.out.println(String.format(Local.LAST_PV, target.getPv()));
+		}else{
+			System.out.println(String.format(Local.DEATH, target.getName()));
+			if(target.equals(player)){
+				//TODO
+			}else{
+				room.getMobs().remove(target);
+				loot(source, target);
 			}
 		}
 	}
@@ -134,7 +154,7 @@ public class Main {
 						}else{
 							target = player;
 						}
-						((Consommable)stuff).use(player, target);
+						consommable(player, target, (Consommable) stuff);
 					}
 					break;
 
@@ -200,8 +220,10 @@ public class Main {
 		RoomGenerator generator = new RoomGenerator();
 		room = generator.generate();
 		Weapon weapon = new WoodenSword();
-		List<Stuff> stuffs = new ArrayList<Stuff>(Collections.singleton(weapon));
-		player = new Mob("Dudule", 100, 6, null, null, null, null, 0, 1, null, stuffs, weapon, null, 0);
+		List<Stuff> stuffs = new ArrayList<Stuff>();
+		stuffs.add(weapon);
+		stuffs.add(new ScrollOfFireBall());
+		player = new Mob("Dudule", 100, 6, 2, 2, 2, 2, 0, 1, null, stuffs, weapon, new Armor(), 0);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}

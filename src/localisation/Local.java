@@ -35,9 +35,11 @@ public final class Local {
 	public static final String WEAPON_FIST_NAME = "Ses poings";
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 	
+	public final static String SCROLL_NAME = "Pachmin de %s";
+	
 	public static final String SPELL_FIREBALL_NAME = "Boule de feu";
 	public static final String SPELL_FIREBALL_DESCRIPTION = "La boule de feu, un grand classique";
-	public static final String SPELL_FIREBALL_EFFECT = "%s lance une boule de feu sur et lui inflique %d";
+	public static final String SPELL_FIREBALL_EFFECT = "%s lance une boule de feu sur %s et lui inflique %d";
 
 	public final static String MOB_GOBELIN = "Gobelin";
 	public final static String MOB_ORC = "Orc";

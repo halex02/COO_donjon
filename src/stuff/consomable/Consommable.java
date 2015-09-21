@@ -5,5 +5,5 @@ import mob.Mob;
 
 
 public abstract class Consommable extends Stuff{
-	public abstract void use(Mob target);
+	public abstract void use(Mob source, Mob target);
 }

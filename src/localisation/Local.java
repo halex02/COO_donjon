@@ -57,6 +57,7 @@ public final class Local {
 	 public final static String ACTION_TROW = "1 - Jeter";
 	 public final static String ACTION_USE = "2 - Utiliser";
 	 public final static String ACTION_EQUIP = "2 - Equiper";
+	 public final static String ACTION_READ_SCROLL = "%s lit un parchemin...";
 
 	 public final static String LAST_PV= "Il lui reste %d pv";
 	 public final static String DEATH= "%s est Mort";

@@ -134,7 +134,7 @@ public class Main {
 						}else{
 							target = player;
 						}
-						((Consommable)stuff).use(target);
+						((Consommable)stuff).use(player, target);
 					}
 					break;
 

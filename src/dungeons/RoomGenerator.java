@@ -54,13 +54,13 @@ public class RoomGenerator {
 				newRoom.getIssues().put(Local.ISSUE_STANDAR[rand
 				                							.nextInt(Local.ISSUE_STANDAR.length)], bossRoom);
 			}
+			curentRoom.getIssues().putAll(
+					subGenerate(rand.nextInt(5) + 1, curentRoom));
 			curentRoom
 					.getIssues()
 					.put(Local.ISSUE_STANDAR[rand
 							.nextInt(Local.ISSUE_STANDAR.length)],
 							newRoom);
-			curentRoom.getIssues().putAll(
-					subGenerate(rand.nextInt(5) + 1, curentRoom));
 			newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
 			
 			newRoom.getMobs().addAll(generator.generate());

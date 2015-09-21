@@ -48,7 +48,7 @@ public final class Local {
 	 public final static String ACTION_TEXT = "Que voullez-vous faire ?";
 	 public final static String ACTION_LIST = "1 - Changer de salle\n"
 		 		+ "2 - Foullier\n"
-		 		+ "3 - Iventaire\n"
+		 		+ "3 - Inventaire\n"
 		 		+ "4 - Danser";
 	 public final static String ACTION_ATTAQUER = "5 - Attaquer\n";
 	 public final static String ACTION_ATTAQUE = "%s attaque avec \"%s\"";

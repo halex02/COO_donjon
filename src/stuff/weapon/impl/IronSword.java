@@ -18,7 +18,8 @@ public class IronSword extends Weapon {
 	@Override
 	public void use(Mob source, Mob target) {
 		Random rand = new Random();
-		Integer degat = source.getStrenth() + rand.nextInt(5) + 5;
+		Integer degat = source.getStrenth() + rand.nextInt(5) + 5 - target.getArmor().getDef();
+		if(degat < 0) degat = 0;
 		System.out.println(String.format(Local.WEAPON_IRON_SWORD_EFFECT,
 				target.getName(), degat));
 		target.setPv(target.getPv() - degat);

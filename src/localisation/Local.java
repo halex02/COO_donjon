@@ -38,7 +38,7 @@ public final class Local {
 	public static final String WEAPON_FIST_NAME = "Ses poings";
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 	
-	public final static String SCROLL_NAME = "Pachmin de %s";
+	public final static String SCROLL_NAME = "Parchemin de %s";
 	
 	public static final String SPELL_FIREBALL_NAME = "Boule de feu";
 	public static final String SPELL_FIREBALL_DESCRIPTION = "La boule de feu, un grand classique";
@@ -65,12 +65,20 @@ public final class Local {
 	 public final static String ACTION_READ_SCROLL = "%s lit un parchemin...";
 
 	 public final static String LAST_PV= "Il lui reste %d pv";
+	 public final static String LVL_UP = "%s passe lvl %d";
 	 public final static String DEATH= "%s est Mort";
 	 public final static String LOOT = "Vous obtenez :";
 	 public final static String MOBS_WAITTING = "On vous y attendait !";
 	 public final static String EQUIPED= "(equipé)";
+	 
+
+	 public final static String FOUILLE = "Un rapide tour de la salle vous revéle ces richesses";
+	 public final static String FOUILLE_VIDE = "Cette salle ne contien rien de valeur";
 
 	 public final static String IDIOT_ATTAQUE = "%s donne un coup à un enemis que lui seul semble voir";
 	 public final static String IDIOT_ISSUE = "%s se cogne contre le mur";
 	 public final static String IDIOT_DANSE = "%s fait une danse rigolote...";
+	 
+	 public final static String STATS_SELECTOR = "Quel Statistique ameliorer ?";
+	 
 }

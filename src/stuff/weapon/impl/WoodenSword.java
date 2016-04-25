@@ -18,7 +18,8 @@ public class WoodenSword extends Weapon {
 	@Override
 	public void use(Mob source, Mob target) {
 		Random rand = new Random();
-		Integer degat = source.getStrenth() + rand.nextInt(2) + 1;
+		Integer degat = source.getStrenth() + rand.nextInt(2) + 1 - target.getArmor().getDef();
+		if(degat < 0) degat = 0;
 		System.out.println(String.format(Local.WEAPON_WOODEN_SWORD_EFFECT,
 				target.getName(), degat));
 		target.setPv(target.getPv() - degat);

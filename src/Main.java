@@ -9,12 +9,12 @@ import localisation.Local;
 import mob.Mob;
 import stuff.Stuff;
 import stuff.armor.Armor;
+import stuff.armor.impl.WodenArmor;
 import stuff.consomable.Consommable;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import stuff.weapon.Weapon;
 import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.IronSword;
-import stuff.weapon.impl.WoodenSword;
 
 
 public class Main {
@@ -27,18 +27,29 @@ public class Main {
 	}
 	
 	private static void loot(Mob source, Mob target){
-		source.getStuff().addAll(target.getStuff());
+		room.getStuffs().addAll(target.getStuff());
 		source.setPo(source.getPo() + target.getPo());
 		source.setXp(source.getXp() + lootXp(target.getXp()));
 		System.out.println();
 		System.out.println(Local.LOOT);
-		for(Stuff stuff : target.getStuff()){
-			System.out.println(" - " + stuff.getName());
-		}
 		if(target.getPo() > 0){
 			System.out.println(" - " + target.getPo() + " PO");
 		}
-		System.out.println(" - " + lootXp(target.getXp()) + 1 + " XP");
+		System.out.println(" - " + lootXp(target.getXp()) + " XP");
+	}
+	
+	private static void fouille(){
+		if(room.getStuffs().size() > 0){
+			System.out.println(Local.FOUILLE);
+			System.out.println(Local.LOOT);
+			for(Stuff stuff : room.getStuffs()){
+				System.out.println(" - " + stuff.getName());
+			}
+			player.getStuff().addAll(room.getStuffs());
+			room.getStuffs().clear();
+		}else{
+			System.out.println(Local.FOUILLE_VIDE);
+		}
 	}
 	
 	private static void attaque(Mob source, Mob target){
@@ -131,6 +142,7 @@ public class Main {
 					if(player.getWeapon() == stuff){
 						player.setWeapon(new Fist());
 					}
+					room.getStuffs().add(stuff);
 					player.getStuff().remove(stuff);
 					break;
 				case 2:
@@ -180,7 +192,7 @@ public class Main {
 					move();
 					break;
 				case 2://Foullier
-					
+					fouille();
 					break;
 				case 3://Iventaire
 					inventaire();
@@ -221,10 +233,12 @@ public class Main {
 		RoomGenerator generator = new RoomGenerator();
 		room = generator.generate();
 		Weapon weapon = new IronSword();
+		Armor armor = new WodenArmor();
 		List<Stuff> stuffs = new ArrayList<Stuff>();
 		stuffs.add(weapon);
+		stuffs.add(armor);
 		stuffs.add(new ScrollOfFireBall());
-		player = new Mob("Dudule", 100, 6, 2, 2, 2, 2, 0, 1, null, stuffs, weapon, new Armor(), 0);
+		player = new Mob("Dudule", 100, 6, 2, 2, 2, 2, 0, 1, null, stuffs, weapon, armor, 0, true);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}

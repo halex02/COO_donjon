@@ -15,9 +15,9 @@ public class Wizard extends Mob {
 			Integer toughness, Integer acuracy, Integer intelligence,
 			Integer charisma, Integer xp, Integer lvl, Integer live,
 			List<Stuff> stuff, Weapon weapon, Armor armor, Integer po,
-			List<Spell> spell) {
+			List<Spell> spell, Boolean isPlayer) {
 		super(nom, maxPv, strenth, toughness, acuracy, intelligence, charisma,
-				xp, lvl, live, stuff, weapon, armor, po);
+				xp, lvl, live, stuff, weapon, armor, po, isPlayer);
 		this.spell = spell;
 	}
 

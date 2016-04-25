@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import localisation.Local;
 import mob.MobGenerator;
 
@@ -40,10 +41,12 @@ public class RoomGenerator {
 	}
 
 	public Room generate() {
+		MobGenerator generator = new MobGenerator();
 		Room room = new Room();
 		Room bossRoom = new Room(Local.ROOM_BOSS_DESCRIPTION, Local.ROOM_BOSS_NAME);
+		bossRoom.setMobs(generator.generate());
+		bossRoom.getMobs().add(generator.generateBoss());
 		Random rand = new Random();
-		MobGenerator generator = new MobGenerator();
 
 		Room curentRoom = room;
 		int nbRoom = (rand.nextInt(3) + 3);
@@ -64,6 +67,9 @@ public class RoomGenerator {
 			newRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
 			
 			newRoom.getMobs().addAll(generator.generate());
+			if(rand.nextInt(10) == 0){
+				newRoom.getStuffs().add(new ScrollOfFireBall());
+			}
 			curentRoom = newRoom;
 		}
 
@@ -88,6 +94,9 @@ public class RoomGenerator {
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));
 				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);
 				newRoom.getMobs().addAll(generator.generate());
+				if(rand.nextInt(10) == 0){
+					newRoom.getStuffs().add(new ScrollOfFireBall());
+				}
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);
 			}

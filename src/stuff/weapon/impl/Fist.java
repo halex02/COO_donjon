@@ -14,8 +14,10 @@ public class Fist extends Weapon {
 
 	@Override
 	public void use(Mob source, Mob target) {
-		Integer degat1 = source.getStrenth();
-		Integer degat2 = (degat1 / 2) + 1;
+		Integer degat1 = source.getStrenth() - target.getArmor().getDef();
+		if(degat1 < 0) degat1 = 0;
+		Integer degat2 = (degat1 / 2) + 1 - source.getArmor().getDef();
+		if(degat2 < 0) degat2 = 0;
 		System.out.println(String.format(Local.WEAPON_FIST_EFFECT, source.getName(),target.getName(), degat1, degat2));
 		target.setPv(target.getPv() - degat1);
 		source.setPv(source.getPv() - degat2);

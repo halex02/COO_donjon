@@ -19,46 +19,47 @@ public class MobGenerator {
 
 	public MobGenerator() {
 		Random rand = new Random();
+		MobNameGenetaror nameGenetaror = new MobNameGenetaror();
 		List<Stuff> stuffs = new ArrayList<Stuff>();
 		Weapon wSword = new WoodenSword();
 		stuffs.add(wSword);
-		mobs.add(new Mob(Local.MOB_GOBELIN + " 1", rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " 2", rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " 3", rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
 		
 		Weapon iSword = new IronSword();
 		stuffs = new ArrayList<Stuff>();
 		stuffs.add(iSword);
 		
-		mobs.add(new Mob(Local.MOB_GOBELIN + " 4", rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " 5", rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
 		
 		
-		mobs.add(new Mob(Local.MOB_ORC + " 1", rand.nextInt(6) + 10, rand
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
 				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " 2", rand.nextInt(6) + 10, rand
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), + 10, rand
 				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " 3", rand.nextInt(6) + 10, rand
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), + 10, rand
 				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " 4", rand.nextInt(6) + 10, rand
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
 				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " 5", rand.nextInt(6) + 10, rand
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
 				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
 
-		mobs.add(new Mob(Local.MOB_TROLL + " 1", rand.nextInt(10) + 20, rand
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
 				.nextInt(25) + 15, 1, stuffs, iSword, new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " 2", rand.nextInt(10) + 20, rand
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
 				.nextInt(25) + 15, 1, stuffs, iSword, new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " 3", rand.nextInt(10) + 20, rand
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
 				.nextInt(25) + 15, 1, new ArrayList<Stuff>(), new Fist(), new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " 4", rand.nextInt(10) + 20, rand
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
 				.nextInt(25) + 15, 1, new ArrayList<Stuff>(), new Fist(), new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " 5", rand.nextInt(10) + 20, rand
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
 				.nextInt(25) + 15, 1, new ArrayList<Stuff>(), new Fist(), new Armor(), rand.nextInt(100)));
 	}
 
@@ -69,6 +70,7 @@ public class MobGenerator {
 		for (int i = 0; i < random.nextInt(7); i++) {
 			Collections.shuffle(mobs);
 			if (!newMobs.contains(mobs.get(0))) {
+				mobs.get(0).setXp(random.nextInt(300) + 50);
 				newMobs.add(mobs.get(0));
 			}
 		}

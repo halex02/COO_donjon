@@ -9,6 +9,7 @@ import stuff.Stuff;
 import stuff.armor.Armor;
 import stuff.armor.impl.WodenArmor;
 import stuff.consomable.Consommable;
+import stuff.consomable.potion.Potion;
 import stuff.consomable.potion.impl.HealPotion;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import stuff.weapon.Weapon;
@@ -52,8 +53,8 @@ public class Main {
 	}
 	
 	private static void respown(){
-		if(player.getLive() > 0){
-			player.setLive(player.getLive() - 1);
+		player.setLive(player.getLive() - 1);
+		if(player.getLive() >= 0){
 			System.out.println(String.format(Local.RESPOWN, player.getLive()));
 			List<Stuff> stuffs = new ArrayList<Stuff>(player.getStuff());
 			for(Stuff stuff : stuffs){
@@ -187,7 +188,7 @@ public class Main {
 						player.setWeapon((Weapon) stuff);
 					}else if(stuff instanceof Consommable){
 						Mob target = null;
-						if(room.getMobs().size()>1){
+						if(room.getMobs().size()>1 && !(stuff instanceof Potion)){
 							Collections.sort(room.getMobs());
 							int i2 = 1;
 							System.out.println(Local.ACTION_PASS);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import stuff.consomable.potion.impl.HealPotion;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import localisation.Local;
 import mob.MobGenerator;
@@ -103,6 +104,9 @@ public class RoomGenerator {
 				newRoom.getMobs().addAll(generator.generate());
 				if(rand.nextInt(10) == 0){
 					newRoom.getStuffs().add(new ScrollOfFireBall());
+				}
+				if(rand.nextInt(10) == 0){
+					newRoom.getStuffs().add(new HealPotion());
 				}
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);

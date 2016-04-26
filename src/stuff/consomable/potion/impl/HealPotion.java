@@ -12,7 +12,7 @@ public class HealPotion extends Potion {
 		name = Local.POTION_HEAL_NAME;
 		setDescription(Local.POTION_HEAL_DESCRIPTION);
 		setValue(10);
-		setWeight(0);
+		setWeight(1);
 	}
 	
 	@Override

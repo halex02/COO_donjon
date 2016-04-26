@@ -79,7 +79,7 @@ public class MobGenerator {
 	public Mob generateBoss() {
 		Random random = new Random();
 		
-		Mob newMob = new Mob(new Double(random.nextDouble()).toString(), random.nextInt(70) + 200, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, 0, 0, 1, new ArrayList<Stuff>(), new Fist(), new Armor(), random.nextInt(1000) + 1000, false);
+		Mob newMob = new Mob(Local.MOB_BOSS, random.nextInt(70) + 200, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, 0, 0, 1, new ArrayList<Stuff>(), new Fist(), new Armor(), random.nextInt(1000) + 1000, false);
 		newMob.setXp(random.nextInt(2000) + 1000);
 		return newMob;
 	}

@@ -14,6 +14,12 @@ import mob.MobGenerator;
 public class RoomGenerator {
 
 	private static List<Room> rooms;
+	
+	private Room startingRoom;
+
+	public Room getStartingRoom() {
+		return startingRoom;
+	}
 
 	public RoomGenerator() {
 		rooms = new ArrayList<Room>();
@@ -78,6 +84,7 @@ public class RoomGenerator {
 		bossRoom.getIssues().put(Local.ISSUE_PREVIOUS, curentRoom);
 		bossRoom.getIssues().put(Local.ISSUE_STANDAR[0], endRoom);
 		endRoom.getIssues().put(Local.ISSUE_PREVIOUS, bossRoom);
+		startingRoom = room;
 		return room;
 	}
 

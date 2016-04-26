@@ -169,12 +169,11 @@ public class Mob implements Comparable<Mob>{
 		while(lvlTab[lvl] < xp){
 			lvl = lvl + 1;
 			pv = maxPv;
-			System.out.println(String.format(Local.LVL_UP, name, lvl));
 			Random random = new Random();
-			int gain = random.nextInt(7);
+			int gain = random.nextInt(4) + 2;
 			if(isPlayer){
+				System.out.println(String.format(Local.LVL_UP, name, lvl));
 				System.out.println(String.format("%s gagne %d en Force !", name, gain));
-				
 			}
 			
 			strenth = strenth + gain;

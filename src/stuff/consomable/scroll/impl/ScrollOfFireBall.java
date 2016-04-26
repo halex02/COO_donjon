@@ -19,9 +19,8 @@ public class ScrollOfFireBall extends Scroll {
 	
 	@Override
 	public void use(Mob source, Mob target) {
-		super.use(source, target);;
+		super.use(source, target);
 		fireBall = new FireBall();
 		fireBall.use(source, target);
 	}
-
 }

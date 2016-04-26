@@ -39,14 +39,19 @@ public final class Local {
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
 	
 	public final static String SCROLL_NAME = "Parchemin de %s";
-	
+
 	public static final String SPELL_FIREBALL_NAME = "Boule de feu";
 	public static final String SPELL_FIREBALL_DESCRIPTION = "La boule de feu, un grand classique";
 	public static final String SPELL_FIREBALL_EFFECT = "%s lance une boule de feu sur %s et lui inflique %d";
+	
+	public static final String POTION_HEAL_NAME = "Potion de soin";
+	public static final String POTION_HEAL_DESCRIPTION = "Recette de grand-mére qui revigore";
+	public static final String POTION_HEAL_EFFECT = "%s ce vois regagner %d PV";
 
 	public final static String MOB_GOBELIN = "Gobelin";
 	public final static String MOB_ORC = "Orc";
 	public final static String MOB_TROLL = "Troll";
+	public final static String MOB_BOSS = "Fistor";
 
 	 public final static String ACTION_TEXT = "Que voullez-vous faire ?";
 	 public final static String ACTION_LIST = "1 - Changer de salle\n"
@@ -63,6 +68,7 @@ public final class Local {
 	 public final static String ACTION_USE = "2 - Utiliser";
 	 public final static String ACTION_EQUIP = "2 - Equiper";
 	 public final static String ACTION_READ_SCROLL = "%s lit un parchemin...";
+	 public final static String ACTION_USE_POTION = "%s avale la potion d'une traite";
 
 	 public final static String LAST_PV= "Il lui reste %d pv";
 	 public final static String LVL_UP = "%s passe lvl %d";
@@ -70,6 +76,8 @@ public final class Local {
 	 public final static String LOOT = "Vous obtenez :";
 	 public final static String MOBS_WAITTING = "On vous y attendait !";
 	 public final static String EQUIPED= "(equipé)";
+	 public final static String RESPOWN= "Respown ! Live : %d";
+	 
 	 
 
 	 public final static String FOUILLE = "Un rapide tour de la salle vous revéle ces richesses";
@@ -78,6 +86,7 @@ public final class Local {
 	 public final static String IDIOT_ATTAQUE = "%s donne un coup à un enemis que lui seul semble voir";
 	 public final static String IDIOT_ISSUE = "%s se cogne contre le mur";
 	 public final static String IDIOT_DANSE = "%s fait une danse rigolote...";
+	 public final static String IDIOT_CHOICE = "%s n'est pas un choix valide";
 	 
 	 public final static String STATS_SELECTOR = "Quel Statistique ameliorer ?";
 	 

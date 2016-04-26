@@ -3,27 +3,40 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import dungeons.Room;
-import dungeons.RoomGenerator;
 import localisation.Local;
 import mob.Mob;
 import stuff.Stuff;
 import stuff.armor.Armor;
 import stuff.armor.impl.WodenArmor;
 import stuff.consomable.Consommable;
+import stuff.consomable.potion.impl.HealPotion;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import stuff.weapon.Weapon;
 import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.IronSword;
+import dungeons.Room;
+import dungeons.RoomGenerator;
 
 
 public class Main {
 	private static Room room;
 	private static Mob player;
+	private static RoomGenerator generator;
 	private static Scanner scanner = new Scanner(System.in);
 	
 	private static Integer lootXp(Integer xp){
 		return (xp/10) + 1;
+	}
+	
+	public static Integer getInput(){
+		String input = scanner.nextLine();
+		Integer output = -1;
+		try{
+			output = Integer.parseInt(input);
+		}catch(NumberFormatException e){
+			System.out.println(String.format(Local.IDIOT_CHOICE, input));
+		}
+		return output;
 	}
 	
 	private static void loot(Mob source, Mob target){
@@ -36,6 +49,24 @@ public class Main {
 			System.out.println(" - " + target.getPo() + " PO");
 		}
 		System.out.println(" - " + lootXp(target.getXp()) + " XP");
+	}
+	
+	private static void respown(){
+		if(player.getLive() > 0){
+			player.setLive(player.getLive() - 1);
+			System.out.println(String.format(Local.RESPOWN, player.getLive()));
+			List<Stuff> stuffs = new ArrayList<Stuff>(player.getStuff());
+			for(Stuff stuff : stuffs){
+				loseStuff(stuff);
+			}
+			room.getMobs().remove(player);
+			for(Mob mob : room.getMobs()){
+				mob.setXp(mob.getXp() + 200);
+			}
+			room = generator.getStartingRoom();
+			room.getMobs().add(player);
+			player.setPv(player.getMaxPv());
+		}
 	}
 	
 	private static void fouille(){
@@ -60,7 +91,7 @@ public class Main {
 		}else{
 			System.out.println(String.format(Local.DEATH, target.getName()));
 			if(target.equals(player)){
-				//TODO
+				respown();
 			}else{
 				room.getMobs().remove(target);
 				loot(source, target);
@@ -76,7 +107,7 @@ public class Main {
 		}else{
 			System.out.println(String.format(Local.DEATH, target.getName()));
 			if(target.equals(player)){
-				//TODO
+				respown();
 			}else{
 				room.getMobs().remove(target);
 				loot(source, target);
@@ -91,7 +122,7 @@ public class Main {
 			System.out.println((i) + " - " + porte);
 			i = i + 1;
 		}
-		int choix = Integer.parseInt(scanner.nextLine());
+		int choix = getInput();
 		if(choix > 0 && choix <= room.getIssues().size()){
 			if(room.getMobs().size() > 1){
 				System.out.println(String.format(Local.ACTION_RUN, player.getName()));
@@ -113,13 +144,24 @@ public class Main {
 		}
 	}
 	
+	private static void loseStuff(Stuff stuff){
+		if(player.getArmor() == stuff){
+			player.setArmor(new Armor());
+		}
+		if(player.getWeapon() == stuff){
+			player.setWeapon(new Fist());
+		}
+		room.getStuffs().add(stuff);
+		player.getStuff().remove(stuff);
+	}
+	
 	private static void inventaire(){
 		int i = 1;
 		for(Stuff stuff : player.getStuff()){
 			System.out.println(i + " - " + stuff.getName() + ((player.getWeapon().equals(stuff) || player.getArmor().equals(stuff))?Local.EQUIPED:""));
 			i = i + 1;
 		}
-		int choix = Integer.parseInt(scanner.nextLine());
+		int choix = getInput();
 		if(choix > 0 && choix <= player.getStuff().size()){
 			Stuff stuff = player.getStuff().get(choix - 1);
 			System.out.println(stuff.getDescription());
@@ -132,18 +174,11 @@ public class Main {
 			}else if(stuff instanceof Consommable){
 				System.out.println(Local.ACTION_USE);
 			}
-			choix = Integer.parseInt(scanner.nextLine());
+			choix = getInput();
 			if(choix > 0 && choix <= 2){
 				switch (choix) {
 				case 1:
-					if(player.getArmor() == stuff){
-						player.setArmor(new Armor());
-					}
-					if(player.getWeapon() == stuff){
-						player.setWeapon(new Fist());
-					}
-					room.getStuffs().add(stuff);
-					player.getStuff().remove(stuff);
+					loseStuff(stuff);
 					break;
 				case 2:
 					if(stuff instanceof Armor){
@@ -160,7 +195,7 @@ public class Main {
 								System.out.println((i2) + " - " + mob2.getName());
 								i2 = i2 + 1;
 							}
-							int c = Integer.parseInt(scanner.nextLine());
+							int c = getInput();
 							if(c > 0 && c <= room.getMobs().size()){
 								target = room.getMobs().get(c - 1);
 							}
@@ -187,7 +222,7 @@ public class Main {
 				if(room.getMobs().size()>1){
 					System.out.println(Local.ACTION_ATTAQUER);
 				}
-				switch (Integer.parseInt(scanner.nextLine())){
+				switch (getInput()){
 				case 1://Changer de salle
 					move();
 					break;
@@ -208,7 +243,7 @@ public class Main {
 							System.out.println((i2) + " - " + mob2.getName());
 							i2 = i2 + 1;
 						}
-						int c = Integer.parseInt(scanner.nextLine());
+						int c = getInput();
 						if(c > 0 && c <= room.getMobs().size()){
 							attaque(player, room.getMobs().get(c - 1));
 						}else{
@@ -230,7 +265,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		RoomGenerator generator = new RoomGenerator();
+		generator = new RoomGenerator();
 		room = generator.generate();
 		Weapon weapon = new IronSword();
 		Armor armor = new WodenArmor();
@@ -238,13 +273,16 @@ public class Main {
 		stuffs.add(weapon);
 		stuffs.add(armor);
 		stuffs.add(new ScrollOfFireBall());
-		player = new Mob("Dudule", 100, 6, 2, 2, 2, 2, 0, 1, null, stuffs, weapon, armor, 0, true);
+		for(int i = 0; i < 5; i++){
+			stuffs.add(new HealPotion());
+		}
+		player = new Mob("Dudule", 100, 15, 2, 2, 2, 2, 0, 1, 3, stuffs, weapon, armor, 0, true);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());
 		}
 		room.getMobs().add(player);
 		do{
 			action();
-		}while(!room.getName().equals(Local.ENDING_ROOM_NAME));
+		}while(!room.getName().equals(Local.ENDING_ROOM_NAME) && player.getLive() >= 0);
 	}
 }

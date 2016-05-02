@@ -102,7 +102,6 @@ public class RoomGenerator {
 				
 				if(rand.nextInt(10) == 0){
 					newRoom = new OneShootRoom(newRoom.getDescription(), newRoom.getName());
-					System.out.println("test");
 				}
 
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));

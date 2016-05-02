@@ -18,6 +18,7 @@ import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.IronSword;
 import dungeons.Room;
 import dungeons.RoomGenerator;
+import dungeons.TrapRoom;
 
 
 public class Main {
@@ -139,7 +140,7 @@ public class Main {
 		if(choix > 0 && choix <= room.getIssues().size()){
 			if(room.getMobs().size() > 1){
 				System.out.println(String.format(Local.ACTION_RUN, player.getName()));
-				for(Mob mob2 : room.getMobs()){
+				for(Mob mob2 : new ArrayList<Mob>(room.getMobs())){
 					if(!mob2.equals(player)){
 						attaque(mob2, player);
 					}
@@ -149,6 +150,12 @@ public class Main {
 			room = room.getIssues().get(room.getIssues().keySet().toArray()[choix - 1]);
 			room.getMobs().add(player);
 			System.out.println(String.format(Local.ACTION_MOVE, player.getName(), room.getDescription()));
+			if(room instanceof TrapRoom){
+				((TrapRoom)room).effect(player);
+				if(player.getPv()<=0){
+					respown();
+				}
+			}
 			if(room.getMobs().size() > 1){
 				System.out.println(Local.MOBS_WAITTING);
 			}

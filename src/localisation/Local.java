@@ -25,6 +25,12 @@ public final class Local {
 	public final static String ROOM_STANDAR_DESCRIPTION_4 = "une cellule bien decore";
 	public final static String ROOM_STANDAR_DESCRIPTION_5 = "une cellule lugubre";
 
+	public final static String ROOM_TRAP_NAME = "la salle ensanglantée";
+	public final static String ROOM_TRAP_DESCRIPTION = "la salle ensanglantée";
+	
+	public final static String ROOM_OS_ROOM = "Un mecanisme complexe implicant des piques, des masses, des lames et d'autres éléments que vous n'arrivez pas à definir ce met en branle et grâce à vous en ce centre rebatise cette piéce \"la salle ensanglantée\"";
+	public final static String ROOM_TRIGGERED = "A peine metez-vous un pied dans cette salle que votre sang ce fige quand vous entendez un petit déclic";
+
 	public final static String[] ISSUE_STANDAR = { "Une porte en bois",
 			"Une tenture", "Une grille", "Une porte" };
 	public final static String ISSUE_PREVIOUS = "En arriere";

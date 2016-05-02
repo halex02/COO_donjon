@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import dungeons.impl.OneShootRoom;
 import stuff.consomable.potion.impl.HealPotion;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import localisation.Local;
@@ -98,6 +99,11 @@ public class RoomGenerator {
 			for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
 				Collections.shuffle(rooms);
 				Room newRoom = new Room(rooms.get(0));
+				
+				if(rand.nextInt(10) == 0){
+					newRoom = new OneShootRoom(newRoom.getDescription(), newRoom.getName());
+					System.out.println("test");
+				}
 
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));
 				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);

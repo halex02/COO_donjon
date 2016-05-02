@@ -1,10 +1,15 @@
 package dungeons;
 
+import localisation.Local;
 import mob.Mob;
 
 public class TrapRoom extends Room {
 
+	public TrapRoom(String description, String name) {
+		super(description, name);
+	}
+	
 	public void effect(Mob player) {
-		// TODO
+		System.out.println(Local.ROOM_TRIGGERED);
 	}
 }

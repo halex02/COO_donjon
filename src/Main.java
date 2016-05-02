@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import localisation.Local;
@@ -41,7 +42,7 @@ public class Main {
 	}
 	
 	private static void loot(Mob source, Mob target){
-		room.getStuffs().addAll(target.getStuff());
+		room.addAllStuff(target.getStuff());
 		source.setPo(source.getPo() + target.getPo());
 		source.setXp(source.getXp() + lootXp(target.getXp()));
 		System.out.println();
@@ -56,9 +57,11 @@ public class Main {
 		player.setLive(player.getLive() - 1);
 		if(player.getLive() >= 0){
 			System.out.println(String.format(Local.RESPOWN, player.getLive()));
-			List<Stuff> stuffs = new ArrayList<Stuff>(player.getStuff());
-			for(Stuff stuff : stuffs){
-				loseStuff(stuff);
+			Map<Stuff,Integer> stuffs = new HashMap<Stuff,Integer>(player.getStuff());
+			for(Stuff stuff : stuffs.keySet()){
+				for (int i = 0; i < stuffs.get(stuff); i++){
+					loseStuff(stuff);
+				}
 			}
 			room.getMobs().remove(player);
 			for(Mob mob : room.getMobs()){
@@ -74,10 +77,15 @@ public class Main {
 		if(room.getStuffs().size() > 0){
 			System.out.println(Local.FOUILLE);
 			System.out.println(Local.LOOT);
-			for(Stuff stuff : room.getStuffs()){
-				System.out.println(" - " + stuff.getName());
+			for(Stuff stuff : room.getStuffs().keySet()){
+				System.out.print(" - " + stuff.getName());
+				if(room.getStuffs().get(stuff) > 1){
+					System.out.println(" x" + room.getStuffs().get(stuff));
+				}else{
+					System.out.println();
+				}
 			}
-			player.getStuff().addAll(room.getStuffs());
+			player.addAllStuff(room.getStuffs());
 			room.getStuffs().clear();
 		}else{
 			System.out.println(Local.FOUILLE_VIDE);
@@ -102,7 +110,11 @@ public class Main {
 	
 	private static void consommable(Mob source, Mob target, Consommable consommable){
 		consommable.use(source, target);
-		source.getStuff().remove(consommable);
+		if(player.getStuff().get(consommable) <= 1){
+			player.getStuff().remove(consommable);
+		}else{
+			player.getStuff().put(consommable, player.getStuff().get(consommable) - 1);
+		}
 		if(target.getPv()>0){
 			System.out.println(String.format(Local.LAST_PV, target.getPv()));
 		}else{
@@ -146,25 +158,37 @@ public class Main {
 	}
 	
 	private static void loseStuff(Stuff stuff){
-		if(player.getArmor() == stuff){
-			player.setArmor(new Armor());
+		if(player.getStuff().get(stuff) <= 1){
+			if(player.getArmor() == stuff){
+				player.setArmor(new Armor());
+			}
+			if(player.getWeapon() == stuff){
+				player.setWeapon(new Fist());
+			}
+			player.getStuff().remove(stuff);
+		}else{
+			player.getStuff().put(stuff, player.getStuff().get(stuff) - 1);
 		}
-		if(player.getWeapon() == stuff){
-			player.setWeapon(new Fist());
-		}
-		room.getStuffs().add(stuff);
-		player.getStuff().remove(stuff);
+		room.addStuff(stuff);
 	}
 	
 	private static void inventaire(){
 		int i = 1;
-		for(Stuff stuff : player.getStuff()){
-			System.out.println(i + " - " + stuff.getName() + ((player.getWeapon().equals(stuff) || player.getArmor().equals(stuff))?Local.EQUIPED:""));
+		for(Stuff stuff : player.getStuff().keySet()){
+			System.out.print(i + " - " + stuff.getName());
+			if(player.getStuff().get(stuff) > 1){
+				System.out.print(" x" + player.getStuff().get(stuff));
+			}
+			if(player.getWeapon().equals(stuff) || player.getArmor().equals(stuff)){
+				System.out.println(" " + Local.EQUIPED);
+			}else{
+				System.out.println();
+			}
 			i = i + 1;
 		}
 		int choix = getInput();
 		if(choix > 0 && choix <= player.getStuff().size()){
-			Stuff stuff = player.getStuff().get(choix - 1);
+			Stuff stuff = (Stuff) player.getStuff().keySet().toArray()[choix - 1];
 			System.out.println(stuff.getDescription());
 			System.out.println();
 			System.out.println(Local.ACTION_TEXT);
@@ -270,13 +294,12 @@ public class Main {
 		room = generator.generate();
 		Weapon weapon = new IronSword();
 		Armor armor = new WodenArmor();
-		List<Stuff> stuffs = new ArrayList<Stuff>();
-		stuffs.add(weapon);
-		stuffs.add(armor);
-		stuffs.add(new ScrollOfFireBall());
-		for(int i = 0; i < 5; i++){
-			stuffs.add(new HealPotion());
-		}
+		Map<Stuff,Integer> stuffs = new HashMap<Stuff, Integer>();
+		stuffs.put(weapon,1);
+		stuffs.put(armor,1);
+		stuffs.put(new ScrollOfFireBall(),1);
+		stuffs.put(new HealPotion(),5);
+
 		player = new Mob("Dudule", 100, 15, 2, 2, 2, 2, 0, 1, 3, stuffs, weapon, armor, 0, true);
 		if(room.getMobs() == null){
 			room.setMobs(new ArrayList<Mob>());

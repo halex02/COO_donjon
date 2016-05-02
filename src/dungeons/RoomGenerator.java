@@ -75,7 +75,7 @@ public class RoomGenerator {
 			
 			newRoom.getMobs().addAll(generator.generate());
 			if(rand.nextInt(10) == 0){
-				newRoom.getStuffs().add(new ScrollOfFireBall());
+				newRoom.addStuff(new ScrollOfFireBall());
 			}
 			curentRoom = newRoom;
 		}
@@ -103,10 +103,10 @@ public class RoomGenerator {
 				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);
 				newRoom.getMobs().addAll(generator.generate());
 				if(rand.nextInt(10) == 0){
-					newRoom.getStuffs().add(new ScrollOfFireBall());
+					newRoom.addStuff(new ScrollOfFireBall());
 				}
 				if(rand.nextInt(10) == 0){
-					newRoom.getStuffs().add(new HealPotion());
+					newRoom.addStuff(new HealPotion(),rand.nextInt(2) + 1);
 				}
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);

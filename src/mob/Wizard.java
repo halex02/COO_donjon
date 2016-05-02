@@ -1,6 +1,7 @@
 package mob;
 
 import java.util.List;
+import java.util.Map;
 
 import spell.Spell;
 import stuff.Stuff;
@@ -14,7 +15,7 @@ public class Wizard extends Mob {
 	public Wizard(String nom, Integer maxPv, Integer strenth,
 			Integer toughness, Integer acuracy, Integer intelligence,
 			Integer charisma, Integer xp, Integer lvl, Integer live,
-			List<Stuff> stuff, Weapon weapon, Armor armor, Integer po,
+			Map<Stuff, Integer> stuff, Weapon weapon, Armor armor, Integer po,
 			List<Spell> spell, Boolean isPlayer) {
 		super(nom, maxPv, strenth, toughness, acuracy, intelligence, charisma,
 				xp, lvl, live, stuff, weapon, armor, po, isPlayer);
@@ -22,7 +23,7 @@ public class Wizard extends Mob {
 	}
 
 	public Wizard(String nom, Integer maxPv, Integer xp, Integer lvl,
-			List<Stuff> stuff, Weapon weapon, Armor armor, Integer po,
+			Map<Stuff, Integer> stuff, Weapon weapon, Armor armor, Integer po,
 			List<Spell> spell) {
 		super(nom, maxPv, xp, lvl, stuff, weapon, armor, po);
 		this.spell = spell;

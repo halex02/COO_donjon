@@ -15,7 +15,7 @@ public class Room {
 	private String name;
 	private Map<String, Room> issues;
 	private List<Mob> mobs;
-	private List<Stuff> stuffs;
+	private Map<Stuff,Integer> stuffs;
 
 	public Room() {
 		super();
@@ -23,7 +23,7 @@ public class Room {
 		this.name = Local.STARTING_ROOM_NAME;
 		issues = new HashMap<>();
 		mobs = new ArrayList<>();
-		stuffs = new ArrayList<>();
+		stuffs = new HashMap<Stuff, Integer>();
 	}
 
 	public Room(Room room) {
@@ -36,7 +36,7 @@ public class Room {
 			this.mobs = new ArrayList<Mob>(room.mobs);
 		issues = new HashMap<>();
 		mobs = new ArrayList<>();
-		stuffs = new ArrayList<>();
+		stuffs = new HashMap<Stuff, Integer>();
 	}
 
 	public Room(String description, String name) {
@@ -45,7 +45,7 @@ public class Room {
 		this.name = name;
 		issues = new HashMap<>();
 		mobs = new ArrayList<>();
-		stuffs = new ArrayList<>();
+		stuffs = new HashMap<Stuff, Integer>();
 	}
 
 	public Room(String description, String name, Map<String, Room> issues,
@@ -57,7 +57,7 @@ public class Room {
 		this.mobs = mobs;
 		issues = new HashMap<>();
 		mobs = new ArrayList<>();
-		stuffs = new ArrayList<>();
+		stuffs = new HashMap<Stuff, Integer>();
 	}
 
 	public String getDescription() {
@@ -76,7 +76,7 @@ public class Room {
 		return mobs;
 	}
 
-	public List<Stuff> getStuffs() {
+	public Map<Stuff,Integer> getStuffs() {
 		return stuffs;
 	}
 
@@ -96,7 +96,37 @@ public class Room {
 		this.mobs = mobs;
 	}
 
-	public void setStuffs(List<Stuff> stuffs) {
+	public void setStuffs(Map<Stuff,Integer> stuffs) {
 		this.stuffs = stuffs;
+	}
+	
+	public void addStuff(Stuff stuff){
+		Integer nb = this.stuffs.get(stuff);
+		if(nb != null){
+			this.stuffs.put(stuff, nb + 1);
+		}else{
+			this.stuffs.put(stuff, 1);
+		}
+	}
+	
+	public void addStuff(Stuff stuff, Integer nb){
+		Integer nbStuff = this.stuffs.get(stuff);
+		if(nbStuff != null){
+			this.stuffs.put(stuff, nbStuff + nb);
+		}else{
+			this.stuffs.put(stuff, nb);
+		}
+	}
+	
+	public void addAllStuff(List<Stuff> stuffs){
+		for(Stuff stuff : stuffs){
+			addStuff(stuff);
+		}
+	}
+	
+	public void addAllStuff(Map<Stuff, Integer> stuffs){
+		for(Stuff stuff : stuffs.keySet()){
+			addStuff(stuff,stuffs.get(stuff));
+		}
 	}
 }

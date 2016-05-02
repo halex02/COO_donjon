@@ -1,6 +1,7 @@
 package mob;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import localisation.Local;
@@ -21,7 +22,7 @@ public class Mob implements Comparable<Mob>{
 	private Integer xp;
 	private Integer lvl;
 	private Integer live;
-	private List<Stuff> stuff;
+	private Map<Stuff,Integer> stuff;
 	private Weapon weapon;
 	private Armor armor;
 	private Integer po;
@@ -30,7 +31,7 @@ public class Mob implements Comparable<Mob>{
 	private static final Integer lvlTab[] = {0,100,300,600,1000,1500,2100,2800,3600,4500};
 
 	public Mob(String nom, Integer maxPv, Integer xp, Integer lvl,
-			List<Stuff> stuff, Weapon weapon, Armor armor, Integer po) {
+			Map<Stuff,Integer> stuff, Weapon weapon, Armor armor, Integer po) {
 		super();
 		this.name = nom;
 		this.pv = maxPv;
@@ -51,7 +52,7 @@ public class Mob implements Comparable<Mob>{
 
 	public Mob(String nom, Integer maxPv, Integer strenth, Integer toughness,
 			Integer acuracy, Integer intelligence, Integer charisma,
-			Integer xp, Integer lvl, Integer live, List<Stuff> stuff,
+			Integer xp, Integer lvl, Integer live, Map<Stuff,Integer> stuff,
 			Weapon weapon, Armor armor, Integer po,Boolean isPlayer) {
 		super();
 		this.name = nom;
@@ -116,7 +117,7 @@ public class Mob implements Comparable<Mob>{
 		return live;
 	}
 
-	public List<Stuff> getStuff() {
+	public Map<Stuff,Integer> getStuff() {
 		return stuff;
 	}
 
@@ -191,8 +192,28 @@ public class Mob implements Comparable<Mob>{
 		this.live = live;
 	}
 
-	public void setStuff(List<Stuff> stuff) {
+	public void setStuff(Map<Stuff,Integer> stuff) {
 		this.stuff = stuff;
+	}
+	
+	public void addStuff(Stuff stuff){
+		this.stuff.put(stuff, (this.stuff.get(stuff)!=null?this.stuff.get(stuff):0) + 1);
+	}
+	
+	public void addStuff(Stuff stuff, Integer nb){
+		this.stuff.put(stuff, (this.stuff.get(stuff)!=null?this.stuff.get(stuff):0) + nb);
+	}
+	
+	public void addAllStuff(List<Stuff> stuffs){
+		for(Stuff stuff : stuffs){
+			addStuff(stuff);
+		}
+	}
+	
+	public void addAllStuff(Map<Stuff, Integer> stuffs){
+		for(Stuff stuff : stuffs.keySet()){
+			addStuff(stuff,stuffs.get(stuff));
+		}
 	}
 
 	public void setWeapon(Weapon weapon) {

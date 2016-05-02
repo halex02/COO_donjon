@@ -38,4 +38,17 @@ public class Stuff {
 		this.description = description;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && name != null){
+			return name.equals(((Stuff) obj).name);
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode() * 12;
+	}
 }

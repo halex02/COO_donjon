@@ -23,5 +23,4 @@ public class Fist extends Weapon {
 		target.setPv(target.getPv() - degat1);
 		source.setPv(source.getPv() - degat2);
 	}
-
 }

@@ -78,7 +78,8 @@ public final class Local {
 	 public final static String ACTION_ATTAQUE = "%s attaque avec \"%s\"";
 	 public final static String ACTION_RUN = "%s tente de s'enfuir";
 	 public final static String ACTION_MOVE = "%s rentre dans %s";
-	 public final static String ACTION_CHANGER_SALLE = "Il y as plusieur issue :";
+	 public final static String ACTION_CHANGER_SALLE_MULT = "Il y as plusieur issue :";
+	 public final static String ACTION_CHANGER_SALLE_UNI = "Il n'y as qu'une issue :";
 	 public final static String ACTION_PASS = "0 - retour";
 	 public final static String ACTION_TROW = "1 - Jeter";
 	 public final static String ACTION_USE = "2 - Utiliser";

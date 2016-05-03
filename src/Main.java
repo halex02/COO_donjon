@@ -129,38 +129,48 @@ public class Main {
 		}
 	}
 	
-	private static void move(){
-		System.out.println(Local.ACTION_CHANGER_SALLE);
-		int i = 1;
-		for(String porte : room.getIssues().keySet()){
-			System.out.println((i) + " - " + porte);
-			i = i + 1;
+	private static void changeRoom(Room r){
+		room.getMobs().remove(player);
+		room = r;
+		room.getMobs().add(player);
+		System.out.println(String.format(Local.ACTION_MOVE, player.getName(), room.getDescription()));
+		if(room instanceof TrapRoom){
+			((TrapRoom)room).effect(player);
+			if(player.getPv()<=0){
+				respown();
+			}
 		}
-		int choix = getInput();
-		if(choix > 0 && choix <= room.getIssues().size()){
-			if(room.getMobs().size() > 1){
-				System.out.println(String.format(Local.ACTION_RUN, player.getName()));
-				for(Mob mob2 : new ArrayList<Mob>(room.getMobs())){
-					if(!mob2.equals(player)){
-						attaque(mob2, player);
+		if(room.getMobs().size() > 1){
+			System.out.println(Local.MOBS_WAITTING);
+		}
+	}
+	
+	private static void move(){
+		if(room.getIssues().size()>1){
+			System.out.println(Local.ACTION_CHANGER_SALLE_MULT);
+			int i = 1;
+			for(String porte : room.getIssues().keySet()){
+				System.out.println((i) + " - " + porte);
+				i = i + 1;
+			}
+			int choix = getInput();
+			if(choix > 0 && choix <= room.getIssues().size()){
+				if(room.getMobs().size() > 1){
+					System.out.println(String.format(Local.ACTION_RUN, player.getName()));
+					for(Mob mob2 : new ArrayList<Mob>(room.getMobs())){
+						if(!mob2.equals(player)){
+							attaque(mob2, player);
+						}
 					}
 				}
-			}
-			room.getMobs().remove(player);
-			room = room.getIssues().get(room.getIssues().keySet().toArray()[choix - 1]);
-			room.getMobs().add(player);
-			System.out.println(String.format(Local.ACTION_MOVE, player.getName(), room.getDescription()));
-			if(room instanceof TrapRoom){
-				((TrapRoom)room).effect(player);
-				if(player.getPv()<=0){
-					respown();
-				}
-			}
-			if(room.getMobs().size() > 1){
-				System.out.println(Local.MOBS_WAITTING);
+				changeRoom(room.getIssues().get(room.getIssues().keySet().toArray()[choix - 1]));
+			}else{
+				System.out.println(String.format(Local.IDIOT_ISSUE, player.getName()));
 			}
 		}else{
-			System.out.println(String.format(Local.IDIOT_ISSUE, player.getName()));
+			System.out.println(Local.ACTION_CHANGER_SALLE_UNI);
+			System.out.println(" - " + room.getIssues().keySet().toArray()[0]);
+			changeRoom(room.getIssues().get(room.getIssues().keySet().toArray()[0]));
 		}
 	}
 	

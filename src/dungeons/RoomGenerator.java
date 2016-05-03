@@ -127,17 +127,6 @@ public class RoomGenerator {
 				}
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);
-				if(newRoom instanceof LegendaryTreasureRoom){
-					Room debug = newRoom;
-					while(debug.getIssues().containsKey(Local.ISSUE_PREVIOUS)){
-						for(String k : debug.getIssues().get(Local.ISSUE_PREVIOUS).getIssues().keySet()){
-							if(debug.getIssues().get(Local.ISSUE_PREVIOUS).getIssues().get(k).equals(debug)){
-								System.out.println(k);
-							}
-						}
-						debug = debug.getIssues().get(Local.ISSUE_PREVIOUS);
-					}
-				}
 			}
 			return issues;
 		} else {

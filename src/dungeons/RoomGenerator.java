@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import dungeons.impl.OneShootRoom;
+import dungeons.trapRoom.impl.OneShootTrapRoom;
+import dungeons.treasureRoom.impl.LegendaryTreasureRoom;
 import stuff.consomable.potion.impl.HealPotion;
 import stuff.consomable.scroll.impl.ScrollOfFireBall;
 import localisation.Local;
@@ -22,8 +23,12 @@ public class RoomGenerator {
 	public Room getStartingRoom() {
 		return startingRoom;
 	}
+	
+	LegendaryTreasureRoom legendaryTreasureRoom;
 
 	public RoomGenerator() {
+		legendaryTreasureRoom = new LegendaryTreasureRoom();
+		
 		rooms = new ArrayList<Room>();
 		rooms.add(new Room(Local.ROOM_COULOIR_DESCRIPTION_1,
 				Local.ROOM_COULOIR_NAME));
@@ -99,14 +104,21 @@ public class RoomGenerator {
 			for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
 				Collections.shuffle(rooms);
 				Room newRoom = new Room(rooms.get(0));
-				
+
 				if(rand.nextInt(10) == 0){
-					newRoom = new OneShootRoom(newRoom.getDescription(), newRoom.getName());
+					newRoom = new OneShootTrapRoom(newRoom.getDescription(), newRoom.getName());
+				}
+				
+				if(rand.nextInt(10) == 0 && legendaryTreasureRoom != null){
+					newRoom = legendaryTreasureRoom;
+					legendaryTreasureRoom = null;
 				}
 
 				newRoom.setIssues(subGenerate(rand.nextInt(lenth), newRoom));
 				newRoom.getIssues().put(Local.ISSUE_PREVIOUS, previousRoom);
-				newRoom.getMobs().addAll(generator.generate());
+				if(!(newRoom instanceof LegendaryTreasureRoom)){
+					newRoom.getMobs().addAll(generator.generate());
+				}
 				if(rand.nextInt(10) == 0){
 					newRoom.addStuff(new ScrollOfFireBall());
 				}
@@ -115,6 +127,17 @@ public class RoomGenerator {
 				}
 				issues.put(Local.ISSUE_STANDAR[rand
 						.nextInt(Local.ISSUE_STANDAR.length)], newRoom);
+				if(newRoom instanceof LegendaryTreasureRoom){
+					Room debug = newRoom;
+					while(debug.getIssues().containsKey(Local.ISSUE_PREVIOUS)){
+						for(String k : debug.getIssues().get(Local.ISSUE_PREVIOUS).getIssues().keySet()){
+							if(debug.getIssues().get(Local.ISSUE_PREVIOUS).getIssues().get(k).equals(debug)){
+								System.out.println(k);
+							}
+						}
+						debug = debug.getIssues().get(Local.ISSUE_PREVIOUS);
+					}
+				}
 			}
 			return issues;
 		} else {

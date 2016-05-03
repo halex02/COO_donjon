@@ -1,14 +1,14 @@
-package dungeons.impl;
+package dungeons.trapRoom.impl;
 
+import dungeons.trapRoom.TrapRoom;
 import localisation.Local;
 import mob.Mob;
-import dungeons.TrapRoom;
 
-public class OneShootRoom extends TrapRoom {
+public class OneShootTrapRoom extends TrapRoom {
 
 	boolean triggered;
 
-	public OneShootRoom(String description, String name) {
+	public OneShootTrapRoom(String description, String name) {
 		super(description,name);
 		triggered = false;
 	}

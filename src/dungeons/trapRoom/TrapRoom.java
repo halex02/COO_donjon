@@ -1,5 +1,6 @@
-package dungeons;
+package dungeons.trapRoom;
 
+import dungeons.Room;
 import localisation.Local;
 import mob.Mob;
 

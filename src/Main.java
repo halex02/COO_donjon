@@ -18,7 +18,7 @@ import stuff.weapon.impl.Fist;
 import stuff.weapon.impl.IronSword;
 import dungeons.Room;
 import dungeons.RoomGenerator;
-import dungeons.TrapRoom;
+import dungeons.trapRoom.TrapRoom;
 
 
 public class Main {

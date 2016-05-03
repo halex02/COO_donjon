@@ -28,6 +28,9 @@ public final class Local {
 	public final static String ROOM_TRAP_NAME = "la salle ensanglantée";
 	public final static String ROOM_TRAP_DESCRIPTION = "la salle ensanglantée";
 	
+	public final static String ROOM_TRESURE_NAME = "Salle au trésore";
+	public final static String ROOM_TRESURE_DESCRIPTION = "Une salle magnifique un gros coffre trône en son centre";
+	
 	public final static String ROOM_OS_ROOM = "Un mecanisme complexe implicant des piques, des masses, des lames et d'autres éléments que vous n'arrivez pas à definir ce met en branle et grâce à vous en son centre rebatise cette piéce \"la salle ensanglantée\"";
 	public final static String ROOM_TRIGGERED = "A peine metez-vous un pied dans cette salle que votre sang ce fige quand vous entendez un petit déclic";
 
@@ -40,9 +43,16 @@ public final class Local {
 	public static final String WEAPON_WOODEN_SWORD_EFFECT = "L'epee s\'abbat sur %s dans un \"pof\" minable et inflige %d";
 	public static final String WEAPON_IRON_SWORD_NAME = "Epee en fer";
 	public static final String WEAPON_IRON_SWORD_DESCRIPTION = "Arme à pas cher";
-	public static final String WEAPON_IRON_SWORD_EFFECT = "L'epee s\'abbat sur %s et inflige %d";
+	public static final String WEAPON_STEEL_SWORD_NAME = "Epee en acier";
+	public static final String WEAPON_STEEL_SWORD_DESCRIPTION = "Bonne fracture et bien aiguiser, que demander de plus ?";
+	public static final String WEAPON_SWORD_EFFECT = "L'epee s\'abbat sur %s et inflige %d";
 	public static final String WEAPON_FIST_NAME = "Ses poings";
 	public static final String WEAPON_FIST_EFFECT = "%s abbat son poing dans la figure de %s et lui fait %d mais se fait aussi %d de dégat";
+
+	public static final String ARMOR_WOODEN_NAME = "Arumre en Bois";
+	public static final String ARMOR_WOODEN_DESCRIPTION = "La vie de l'arbre qui à servi à fabriquer cette armure avais sans doute moins de valeur que la votre...";
+	public static final String ARMOR_PLATE_NAME = "Arumre de plaque";
+	public static final String ARMOR_PLATE_DESCRIPTION = "Vous ressemblez peut-être à une boite de conserve, mais à une boite de conserve vivante !";
 	
 	public final static String SCROLL_NAME = "Parchemin de %s";
 

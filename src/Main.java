@@ -43,14 +43,14 @@ public class Main {
 
 	private static void loot(Mob source, Mob target) {
 		room.addAllStuff(target.getStuff());
-		source.setPo(source.getPo() + target.getPo());
-		source.setXp(source.getXp() + lootXp(target.getXp()));
 		System.out.println();
 		System.out.println(Local.LOOT);
 		if (target.getPo() > 0) {
 			System.out.println(" - " + target.getPo() + " PO");
 		}
 		System.out.println(" - " + lootXp(target.getXp()) + " XP");
+		source.setPo(source.getPo() + target.getPo());
+		source.setXp(source.getXp() + lootXp(target.getXp()));
 	}
 
 	private static void respown() {
@@ -283,7 +283,8 @@ public class Main {
 	private static void action() {
 		Collections.shuffle(room.getMobs());
 		for (int mobIndex = 0; mobIndex < room.getMobs().size(); mobIndex++) {
-			if (room.getMobs().get(mobIndex).equals(player)) {
+			if (room.getMobs().get(mobIndex).equals(player)
+					&& player.getPv() > 0) {
 				System.out.println(Local.ACTION_TEXT);
 				System.out.println(Local.ACTION_LIST);
 				if (room.getMobs().size() > 1) {

@@ -9,7 +9,7 @@ import stuff.Stuff;
 import stuff.armor.Armor;
 import stuff.weapon.Weapon;
 
-public class Mob implements Comparable<Mob>{
+public class Mob implements Comparable<Mob> {
 
 	private String name;
 	protected Integer pv;
@@ -22,16 +22,17 @@ public class Mob implements Comparable<Mob>{
 	private Integer xp;
 	private Integer lvl;
 	private Integer live;
-	private Map<Stuff,Integer> stuff;
+	private Map<Stuff, Integer> stuff;
 	private Weapon weapon;
 	private Armor armor;
 	private Integer po;
 	private Boolean isPlayer;
-	
-	private static final Integer lvlTab[] = {0,100,300,600,1000,1500,2100,2800,3600,4500};
+
+	private static final Integer lvlTab[] = { 0, 100, 300, 600, 1000, 1500,
+			2100, 2800, 3600, 4500 };
 
 	public Mob(String nom, Integer maxPv, Integer xp, Integer lvl,
-			Map<Stuff,Integer> stuff, Weapon weapon, Armor armor, Integer po) {
+			Map<Stuff, Integer> stuff, Weapon weapon, Armor armor, Integer po) {
 		super();
 		this.name = nom;
 		this.pv = maxPv;
@@ -52,8 +53,8 @@ public class Mob implements Comparable<Mob>{
 
 	public Mob(String nom, Integer maxPv, Integer strenth, Integer toughness,
 			Integer acuracy, Integer intelligence, Integer charisma,
-			Integer xp, Integer lvl, Integer live, Map<Stuff,Integer> stuff,
-			Weapon weapon, Armor armor, Integer po,Boolean isPlayer) {
+			Integer xp, Integer lvl, Integer live, Map<Stuff, Integer> stuff,
+			Weapon weapon, Armor armor, Integer po, Boolean isPlayer) {
 		super();
 		this.name = nom;
 		this.pv = maxPv;
@@ -117,7 +118,7 @@ public class Mob implements Comparable<Mob>{
 		return live;
 	}
 
-	public Map<Stuff,Integer> getStuff() {
+	public Map<Stuff, Integer> getStuff() {
 		return stuff;
 	}
 
@@ -167,22 +168,52 @@ public class Mob implements Comparable<Mob>{
 
 	public void setXp(Integer xp) {
 		this.xp = xp;
-		while(lvlTab[lvl] < xp){
+		while (lvlTab[lvl] < xp) {
 			lvl = lvl + 1;
-			pv = maxPv;
 			Random random = new Random();
-			int gain = random.nextInt(4) + 2;
-			if(isPlayer){
+			int gain = (random.nextInt(4) + 2) * 10;
+			if (isPlayer) {
 				System.out.println(String.format(Local.LVL_UP, name, lvl));
-				System.out.println(String.format("%s gagne %d en Force !", name, gain));
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_PV));
 			}
-			
-			strenth = strenth + gain;
+			maxPv += gain;
+			pv = maxPv;
+			gain = random.nextInt(4) + 2;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_STRENTH));
+			}
+			strenth += gain;
+			gain = random.nextInt(4) + 2;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_TOUGHNESS));
+			}
+			toughness += gain;
+			gain = random.nextInt(4) + 2;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_ACURACY));
+			}
+			acuracy += gain;
+			gain = random.nextInt(4) + 2;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_INTELLIGENCE));
+			}
+			intelligence += gain;
+			gain = random.nextInt(4) + 2;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_CHARISMA));
+			}
+			charisma += gain;
 		}
 	}
 
 	public void setLvl(Integer lvl) {
-		if(lvl > this.lvl){
+		if (lvl > this.lvl) {
 			pv = maxPv;
 		}
 		this.lvl = lvl;
@@ -192,27 +223,32 @@ public class Mob implements Comparable<Mob>{
 		this.live = live;
 	}
 
-	public void setStuff(Map<Stuff,Integer> stuff) {
+	public void setStuff(Map<Stuff, Integer> stuff) {
 		this.stuff = stuff;
 	}
-	
-	public void addStuff(Stuff stuff){
-		this.stuff.put(stuff, (this.stuff.get(stuff)!=null?this.stuff.get(stuff):0) + 1);
+
+	public void addStuff(Stuff stuff) {
+		this.stuff
+				.put(stuff,
+						(this.stuff.get(stuff) != null ? this.stuff.get(stuff)
+								: 0) + 1);
 	}
-	
-	public void addStuff(Stuff stuff, Integer nb){
-		this.stuff.put(stuff, (this.stuff.get(stuff)!=null?this.stuff.get(stuff):0) + nb);
+
+	public void addStuff(Stuff stuff, Integer nb) {
+		this.stuff.put(stuff,
+				(this.stuff.get(stuff) != null ? this.stuff.get(stuff) : 0)
+						+ nb);
 	}
-	
-	public void addAllStuff(List<Stuff> stuffs){
-		for(Stuff stuff : stuffs){
+
+	public void addAllStuff(List<Stuff> stuffs) {
+		for (Stuff stuff : stuffs) {
 			addStuff(stuff);
 		}
 	}
-	
-	public void addAllStuff(Map<Stuff, Integer> stuffs){
-		for(Stuff stuff : stuffs.keySet()){
-			addStuff(stuff,stuffs.get(stuff));
+
+	public void addAllStuff(Map<Stuff, Integer> stuffs) {
+		for (Stuff stuff : stuffs.keySet()) {
+			addStuff(stuff, stuffs.get(stuff));
 		}
 	}
 
@@ -227,7 +263,7 @@ public class Mob implements Comparable<Mob>{
 	public void setPo(Integer po) {
 		this.po = po;
 	}
-	
+
 	@Override
 	public int compareTo(Mob o) {
 		return name.compareTo(o.name);

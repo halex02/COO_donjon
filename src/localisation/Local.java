@@ -85,12 +85,6 @@ public final class Local {
 	public final static String ACTION_READ_SCROLL = "%s lit un parchemin...";
 	public final static String ACTION_USE_POTION = "%s avale la potion d'une traite";
 	public final static String ACTION_GAIN = "%s gagne %d en %s !";
-	public final static String STATS_PV = "points de vie";
-	public final static String STATS_STRENTH = "force";
-	public final static String STATS_TOUGHNESS = "endurence";
-	public final static String STATS_ACURACY = "precision";
-	public final static String STATS_INTELLIGENCE = "inteligence";
-	public final static String STATS_CHARISMA = "charisme";
 
 	public final static String LAST_PV = "Il lui reste %d pv";
 	public final static String LVL_UP = "%s passe lvl %d";
@@ -109,5 +103,10 @@ public final class Local {
 	public final static String IDIOT_CHOICE = "%s n'est pas un choix valide";
 
 	public final static String STATS_SELECTOR = "Quel Statistique ameliorer ?";
-
+	public final static String STATS_PV = "points de vie";
+	public final static String STATS_STRENTH = "force";
+	public final static String STATS_TOUGHNESS = "endurence";
+	public final static String STATS_ACURACY = "precision";
+	public final static String STATS_INTELLIGENCE = "inteligence";
+	public final static String STATS_CHARISMA = "charisme";
 }

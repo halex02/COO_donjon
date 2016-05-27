@@ -22,47 +22,64 @@ public class MobGenerator {
 	public MobGenerator() {
 		Random rand = new Random();
 		MobNameGenetaror nameGenetaror = new MobNameGenetaror();
-		Map<Stuff,Integer> stuffs = new HashMap<Stuff, Integer>();
+		Map<Stuff, Integer> stuffs = new HashMap<Stuff, Integer>();
 		Weapon wSword = new WoodenSword();
-		stuffs.put(wSword,1);
-		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
+		stuffs.put(wSword, 1);
+		mobs.add(new Mob(Local.MOB_GOBELIN + " "
+				+ nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " "
+				+ nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
+		mobs.add(new Mob(Local.MOB_GOBELIN + " "
+				+ nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
 				.nextInt(20), 1, stuffs, wSword, new Armor(), rand.nextInt(5)));
-		
+
 		Weapon iSword = new IronSword();
 		stuffs = new HashMap<Stuff, Integer>();
-		stuffs.put(iSword,1);
-		
-		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
-				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
-		mobs.add(new Mob(Local.MOB_GOBELIN + " " + nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
-				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
-		
-		
-		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
-				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), + 10, rand
-				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), + 10, rand
-				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
-				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
-		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand.nextInt(6) + 10, rand
-				.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand.nextInt(10)));
+		stuffs.put(iSword, 1);
 
-		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
-				.nextInt(25) + 15, 1, stuffs, iSword, new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
-				.nextInt(25) + 15, 1, stuffs, iSword, new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
-				.nextInt(25) + 15, 1, new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
-				.nextInt(25) + 15, 1, new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand.nextInt(100)));
-		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(), rand.nextInt(10) + 20, rand
-				.nextInt(25) + 15, 1, new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand.nextInt(100)));
+		mobs.add(new Mob(Local.MOB_GOBELIN + " "
+				+ nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
+				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
+		mobs.add(new Mob(Local.MOB_GOBELIN + " "
+				+ nameGenetaror.getGobelineName(), rand.nextInt(5) + 7, rand
+				.nextInt(20), 1, stuffs, iSword, new Armor(), rand.nextInt(5)));
+
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand
+				.nextInt(6) + 10, rand.nextInt(20) + 10, 1, stuffs, iSword,
+				new Armor(), rand.nextInt(10)));
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), +10,
+				rand.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand
+						.nextInt(10)));
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), +10,
+				rand.nextInt(20) + 10, 1, stuffs, iSword, new Armor(), rand
+						.nextInt(10)));
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand
+				.nextInt(6) + 10, rand.nextInt(20) + 10, 1, stuffs, iSword,
+				new Armor(), rand.nextInt(10)));
+		mobs.add(new Mob(Local.MOB_ORC + " " + nameGenetaror.getOrcName(), rand
+				.nextInt(6) + 10, rand.nextInt(20) + 10, 1, stuffs, iSword,
+				new Armor(), rand.nextInt(10)));
+
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(),
+				rand.nextInt(10) + 20, rand.nextInt(25) + 15, 1, stuffs,
+				iSword, new Armor(), rand.nextInt(100)));
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(),
+				rand.nextInt(10) + 20, rand.nextInt(25) + 15, 1, stuffs,
+				iSword, new Armor(), rand.nextInt(100)));
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(),
+				rand.nextInt(10) + 20, rand.nextInt(25) + 15, 1,
+				new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand
+						.nextInt(100)));
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(),
+				rand.nextInt(10) + 20, rand.nextInt(25) + 15, 1,
+				new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand
+						.nextInt(100)));
+		mobs.add(new Mob(Local.MOB_TROLL + " " + nameGenetaror.getTrollName(),
+				rand.nextInt(10) + 20, rand.nextInt(25) + 15, 1,
+				new HashMap<Stuff, Integer>(), new Fist(), new Armor(), rand
+						.nextInt(100)));
 	}
 
 	public List<Mob> generate() {
@@ -82,8 +99,12 @@ public class MobGenerator {
 
 	public Mob generateBoss() {
 		Random random = new Random();
-		
-		Mob newMob = new Mob(Local.MOB_BOSS, random.nextInt(70) + 200, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, random.nextInt(10) + 1, 0, 0, 1, new HashMap<Stuff, Integer>(), new Fist(), new Armor(), random.nextInt(1000) + 1000, false);
+
+		Mob newMob = new Mob(Local.MOB_BOSS, random.nextInt(70) + 200,
+				random.nextInt(10) + 1, random.nextInt(10) + 1,
+				random.nextInt(10) + 1, random.nextInt(10) + 1,
+				random.nextInt(10) + 1, 0, 0, 1, new HashMap<Stuff, Integer>(),
+				new Fist(), new Armor(), random.nextInt(1000) + 1000, false);
 		newMob.setXp(random.nextInt(2000) + 1000);
 		return newMob;
 	}

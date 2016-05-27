@@ -171,16 +171,9 @@ public class Mob implements Comparable<Mob> {
 		while (lvlTab[lvl] < xp) {
 			lvl = lvl + 1;
 			Random random = new Random();
-			int gain = (random.nextInt(4) + 2) * 10;
+			int gain = random.nextInt(4) + 2;
 			if (isPlayer) {
 				System.out.println(String.format(Local.LVL_UP, name, lvl));
-				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
-						Local.STATS_PV));
-			}
-			maxPv += gain;
-			pv = maxPv;
-			gain = random.nextInt(4) + 2;
-			if (isPlayer) {
 				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
 						Local.STATS_STRENTH));
 			}
@@ -209,6 +202,13 @@ public class Mob implements Comparable<Mob> {
 						Local.STATS_CHARISMA));
 			}
 			charisma += gain;
+			gain = (random.nextInt(4) + 2) * toughness;
+			if (isPlayer) {
+				System.out.println(String.format(Local.ACTION_GAIN, name, gain,
+						Local.STATS_PV));
+			}
+			maxPv += gain;
+			pv = maxPv;
 		}
 	}
 
